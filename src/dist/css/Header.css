@@ -1,0 +1,72 @@
+/* HEADER */
+
+.logo {
+  width: 220px;
+  height: 120px;
+}
+
+.header {
+  background: #ffffffbe;
+  height: 80vh;
+}
+
+.cestparti {
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 20px;
+}
+.cestparti:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+  transition: 0.5s;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* BOUTON */
+
+.btn {
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 20px;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+}
+
+.btn:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  box-shadow: 0px 1px 0px 0px;
+}
+
+.orange {
+  background-color: #ffa51e;
+  box-shadow: 0px 5px 0px 0px #ec7309;
+}
+
+.orange:hover {
+  background-color: #e66f07;
+  color: white;
+  transition: 0.5s;
+}
+
+.blank {
+  background-color: #a8a8a856;
+  box-shadow: 0px 5px 0px 0px #7c7c7c;
+  transition: 0.5s;
+}
+
+.blank:hover {
+  background-color: #c9c9c9b2;
+  transition: 0.5s;
+  color: rgba(255, 255, 255, 0.212);
+  color: white;
+}
