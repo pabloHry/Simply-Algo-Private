@@ -1,6 +1,5 @@
 import React from "react";
-import Connexion from "./Connexion/Connexion";
 
-const PageDeConnexion = () => <Connexion />;
+const PageDeConnexion = () => <div className=""></div>;
 
 export default PageDeConnexion;
