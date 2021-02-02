@@ -1,8 +1,8 @@
 import React from "react";
 import Nav from "../Navbar/Navbar";
 import Header from "./Header/Header";
-import About from "./About/About";
-import Footer from "../Footer/Footer";
+// import About from "./About/About";
+// import Footer from "../Footer/Footer";
 const MainPage = () => (
   <div>
     <div className="">
@@ -10,9 +10,9 @@ const MainPage = () => (
       <header className="header">
         <Header />
       </header>
-      <About />
+      {/* <About /> */}
     </div>
-    <Footer />
+    {/* <Footer /> */}
   </div>
 );
 

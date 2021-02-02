@@ -6,8 +6,18 @@
 }
 
 .header {
-  background: url("../img//sa3d.jpg") no-repeat;
+  background: #ffffff;
   height: 80vh;
+}
+
+.pad {
+  padding: 6rem;
+}
+
+.titre,
+.titres {
+  color: #73493f !important;
+  font-weight: bold !important;
 }
 
 .cestparti {
@@ -15,17 +25,19 @@
   cursor: pointer;
   text-decoration: none;
   font-size: 20px;
+  font-weight: bold;
 }
 .cestparti:hover {
   cursor: pointer;
   text-decoration: none;
   color: #ffffff;
   transition: 0.5s;
+  font-weight: bold;
 }
 
 .page {
   display: flex;
-  flex-direction: column;
+  flex-direction: wrap;
 }
 
 /* BOUTON */
@@ -58,15 +70,22 @@
   transition: 0.5s;
 }
 
-.blank {
-  background-color: #a8a8a856;
-  box-shadow: 0px 5px 0px 0px #7c7c7c;
-  transition: 0.5s;
+/* LOUTRE */
+
+.juju {
+  border-radius: 10px;
+  border: 3px solid orange;
+  width: 40%;
+  height: 10vh;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-weight: bold;
 }
 
-.blank:hover {
-  background-color: #c9c9c9b2;
-  transition: 0.5s;
-  color: rgba(255, 255, 255, 0.212);
-  color: white;
+.loutrelogo {
+  width: 150px;
+  height: 150px;
+  float: right;
 }

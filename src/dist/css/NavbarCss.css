@@ -2,30 +2,24 @@
 
 .navbar {
   padding: 0 40px;
-  background-image: linear-gradient(
-    to bottom,
-    #f09000,
-    #f49404,
-    #f89809,
-    #fb9d0e,
-    #ffa112
-  );
+  background: #ff9900;
 }
 
 .simplyAlgo {
-  color: #ffffff;
+  color: rgb(255, 255, 255);
   cursor: pointer;
   text-decoration: none;
-  font-size: 28px;
-  letter-spacing: 2px;
+  font-size: 20px;
+  font-weight: bold;
 }
 .simplyAlgo:hover {
   cursor: pointer;
   text-decoration: none;
-  color: #ffffff;
+  color: rgb(255, 255, 255);
   transition: 0.5s;
+  font-weight: bold;
 }
 
-.siteLangage {
-  letter-spacing: 2px;
+.bg-primary {
+  color: #73493f !important;
 }
