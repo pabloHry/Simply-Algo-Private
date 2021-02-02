@@ -7,7 +7,6 @@
 
 .header {
   background: #ffffff;
-  height: 80vh;
 }
 
 .pad {
@@ -76,7 +75,6 @@
   border-radius: 10px;
   border: 3px solid orange;
   width: 40%;
-  height: 10vh;
   float: right;
   display: flex;
   justify-content: center;

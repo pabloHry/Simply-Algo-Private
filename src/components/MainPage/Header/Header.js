@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Loutre from "../../../dist/img/loutrelogo.png";
 
 const Header = () => (
-  <div className="pad">
+  <div className="">
     <div className="page p-5 d-flex container">
       <div className="text-center p-5 col-xl-6">
         <h3 className="titre">
@@ -18,8 +18,8 @@ const Header = () => (
         </div>
       </div>
       <div className="col-xl-6 p-5">
-        <div className="juju">
-          <p className="text-center titres">Hello je m'appelle Loudev</p>
+        <div className="juju ml-4">
+          <p className="text-center titres my-2">Hello je m'appelle Loudev</p>
         </div>
         <img className="loutrelogo" src={Loutre} alt="" />
       </div>
