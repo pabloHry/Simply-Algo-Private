@@ -1,18 +1,37 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-.NavContainer {
-    width: 100vw;
-    height: 100px;
-    background: black;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+a:hover {
+  color: black;
 }
-.NavContainer a {
-    color: white;
-    text-decoration: none;
+
+.whited:hover {
+  color: white;
+}
+
+@font-face {
+  font-family: 'Poppins Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Poppins Bold'), url('./fonts/Poppins-Bold.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Poppins Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Poppins Regular'),
+    url('./fonts/Poppins-Regular.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'Poppins Semi Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Poppins Semi Bold'),
+    url('./fonts//Poppins-SemiBold.ttf') format('ttf');
 }

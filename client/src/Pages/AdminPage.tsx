@@ -9,15 +9,21 @@ import {
   Button,
   Input,
   Grid,
-  Text
+  Text,
+  toast,
+  useToast
 } from '@chakra-ui/react';
 import Layout from './layout/Layout';
 
 export default function AdminPage() {
   const ctx = useContext(myContext);
-
+  const toast = useToast();
   const [data, setData] = useState<UserInterface[]>();
   const [selectedUser, setSelectedUser] = useState<string>();
+
+  function timeout(delay: number) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
   useEffect(() => {
     Axios.get('http://localhost:4000/getallusers', {
       withCredentials: true
@@ -35,7 +41,7 @@ export default function AdminPage() {
 
   const deleteUser = () => {
     let userid: string;
-    data.forEach((item: UserInterface) => {
+    data.forEach(async (item: UserInterface) => {
       if (item.username === selectedUser) {
         userid = item.id;
       }
@@ -52,22 +58,31 @@ export default function AdminPage() {
     );
   };
 
-  const updateUser = () => {
-    console.log('fdp');
+  const isAdmin = {
+    isAdmin: true
+  };
+
+  const AdminUser = () => {
     let userid: string;
-    data.forEach((item: UserInterface) => {
+    data.forEach(async (item: UserInterface) => {
       if (item.username === selectedUser) {
-        userid = item.username;
+        userid = item.id;
       }
     });
-    Axios.put(
-      'http://localhost:4000/updateuser',
-      {
-        id: userid!,
-        isAdmin: true
-      },
-      {
-        withCredentials: true
+
+    Axios.put(`http://localhost:4000/user/${userid!}`, isAdmin).then(
+      async (res: AxiosResponse) => {
+        if (res.data === 'success') {
+        } else {
+          toast({
+            title: 'Le compte est maintenant admin',
+            status: 'success',
+            duration: 2000,
+            isClosable: true
+          });
+          await timeout(3000);
+          window.location.href = '/admin';
+        }
       }
     );
   };
@@ -95,8 +110,8 @@ export default function AdminPage() {
         <Button ml={5} variant="orange" onClick={deleteUser}>
           Suprimer l'utilisateur
         </Button>
-        <Button ml={5} variant="orange" onClick={updateUser}>
-          Update l'utilisateur
+        <Button ml={5} variant="orange" onClick={AdminUser}>
+          Admin Utilisateur{' '}
         </Button>
       </Box>
     </Layout>

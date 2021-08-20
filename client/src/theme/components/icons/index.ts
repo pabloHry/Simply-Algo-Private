@@ -3,3 +3,5 @@ export * from './Star';
 export * from './Double-quotes';
 export * from './Trophy';
 export * from './Feather';
+export * from './Message';
+export * from './Pencil';

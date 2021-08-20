@@ -9,7 +9,9 @@ import Choose from './Pages/Coures/Choose';
 import { myContext } from './Pages/Context';
 import Register from './Pages/Register';
 import CoursJs from './Pages/Coures/CoursJs';
-
+import Forum from './Pages/Forum/Forum';
+import './main.css';
+import ForumJavaScript from './Pages/Forum/components/ForumJavaScript';
 function App() {
   const ctx = useContext(myContext);
 
@@ -23,6 +25,8 @@ function App() {
             <Route path="/profile" component={Profile} />
             <Route path="/choose" component={Choose} />
             <Route path="/js" component={CoursJs} />
+            <Route path="/forum" component={Forum} />
+            <Route path="/javascript" component={ForumJavaScript} />
           </>
         ) : (
           <>

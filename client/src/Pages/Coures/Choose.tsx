@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Layout from '../layout/Layout';
 import {
   Box,
@@ -7,21 +7,43 @@ import {
   Image,
   Link,
   Container,
-  CircularProgress
+  CircularProgress,
+  Button
 } from '@chakra-ui/react';
 import { myContext } from '../Context';
+import axios, { AxiosResponse } from 'axios';
 
 export default function Choose() {
   const ctx = useContext(myContext);
+  // const [level, setLevel] = useState<number>();
+
+  const newLevel = {
+    level: 10
+  };
+
+  const progression = () => {
+    if (newLevel.level === 10) {
+      axios
+        .put(`http://localhost:4000/user/${ctx.id}`, newLevel)
+        .then(async (res: AxiosResponse) => {
+          if (res.data === 'success') {
+            window.location.reload();
+          }
+        });
+    } else {
+      console.log('bite');
+    }
+  };
 
   return (
     <Layout>
       <Box>
-        <Text textStyle="h2" textAlign="center" mt={10}>
+        <Text textStyle="h2" textAlign="center" mt={10} color="simplyAlgo">
           Choisir son cours :
         </Text>
         <Container
-          w="17%"
+          onClick={progression}
+          w={['60%', '40%', '25%', '25%', '17%']}
           mt={20}
           border="1px solid #EEEEEE"
           p={12}

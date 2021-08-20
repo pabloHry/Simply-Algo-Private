@@ -29,9 +29,19 @@ const Button = {
     },
     primary: {
       ...commonButtonStyle,
-      bg: 'bluefrance',
+      bg: '#5294E2',
       color: 'white',
-      _hover: { bg: '#0000dd' }
+      borderRadius: '5px',
+      boxShadow: '0px 5px 0px 0px #4988d1',
+      _hover: { bg: '#5294E2' }
+    },
+    success: {
+      ...commonButtonStyle,
+      bg: '#3AAC19',
+      color: 'white',
+      borderRadius: '5px',
+      boxShadow: '0px 5px 0px 0px #3EB61B',
+      _hover: { bg: '#44C31E' }
     },
     pill: {
       ...commonButtonStyle,

@@ -195,15 +195,15 @@ const textStyles = {
 };
 
 const fonts = {
-  body: 'Marianne, Arial',
-  heading: 'Marianne, Arial'
+  body: 'Poppins, Arial',
+  heading: 'Poppins, Arial'
 };
 
 const styles = {
   global: {
     'html, body': {
       fontSize: `${rootFontSizePx}px`,
-      fontFamily: 'Marianne, Arial',
+      fontFamily: 'Poppins, Arial',
       background: 'white',
       color: 'bluefrance'
     }

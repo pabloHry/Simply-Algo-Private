@@ -7,11 +7,18 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import bcrypt from 'bcryptjs';
 import User from './User';
+import Feed from './FeedBack';
 import dotenv from 'dotenv';
+
 import {
   UserInterface,
-  DatabaseUserInterface
-} from './Interfaces/UserInterface';
+  DatabaseUserInterface,
+  DatabaseForumInterface,
+  ForumInterface,
+  FeedBackInterface,
+  DatabaseFeedBackInterface
+} from './Interfaces';
+import Forum from './Forum';
 
 const LocalStrategy = passportLocal.Strategy;
 
@@ -73,6 +80,10 @@ passport.deserializeUser((id: string, cb) => {
       isAdmin: user.isAdmin,
       level: user.level,
       feedBack: user.feedBack,
+      prenom: user.prenom,
+      nom: user.nom,
+      email: user.email,
+      classe: user.classe,
       id: user._id
     };
     cb(err, userInformation);
@@ -80,6 +91,60 @@ passport.deserializeUser((id: string, cb) => {
 });
 
 // Routes
+
+app.post('/feedback', async (req, res) => {
+  const { msg, type, firstname, star1, star2, star3, star4, star5 } = req?.body;
+
+  Feed.findOne(
+    { msg, type, firstname, star1, star2, star3, star4, star5 },
+    async (err, doc: DatabaseFeedBackInterface) => {
+      if (!doc) {
+        const newFeed = new Feed({
+          type,
+          msg,
+          firstname,
+          star1,
+          star2,
+          star3,
+          star4,
+          star5,
+          time: new Date()
+        });
+        await newFeed.save();
+        res.send('success');
+      }
+    }
+  );
+});
+
+app.get('/feed', async (req, res) => {
+  const result = await Feed.find({});
+  return res.json(result);
+});
+
+app.post('/forum', async (req, res) => {
+  const { type, msg, msgCreated, subject, subjectCreated, title } = req?.body;
+
+  Feed.findOne(
+    { type, msg, msgCreated, subject, subjectCreated, title },
+    async (err, doc: DatabaseForumInterface) => {
+      if (!doc) {
+        const newForum = new Forum({
+          type,
+          msg,
+          msgCreated,
+          subject,
+          subjectCreated,
+          title,
+          time: new Date()
+        });
+        await newForum.save();
+        res.send('success');
+      }
+    }
+  );
+});
+
 app.post('/register', async (req, res) => {
   const { username, password, prenom, nom, email, classe } = req?.body;
   if (
@@ -154,19 +219,18 @@ app.post('/deleteuser', isAdministratorMiddleware, async (req, res) => {
   res.send('success');
 });
 
-app.post('/update', (req, res) => {
-  const { feedBack } = req?.body;
-  User.findByIdAndUpdate(feedBack, (err: any) => {
-    if (err) throw err;
-  });
-});
+app.put('/user/:id', async ({ body, params }, res) => {
+  const { level, isAdmin } = body;
+  const itemId = params.id;
+  if (!level && !isAdmin) {
+    return res.status(400).send({ error: 'Probleme' });
+  }
 
-app.put('/updateuser', isAdministratorMiddleware, async (req, res) => {
-  const { id, isAdmin } = req?.body;
-  await User.findByIdAndUpdate(id, isAdmin, (err: any) => {
-    if (err) throw err;
+  const result = await User.findOneAndUpdate({ _id: itemId }, body, {
+    new: true
   });
-  res.send('success');
+
+  return res.json(result);
 });
 
 app.get('/getallusers', isAdministratorMiddleware, async (req, res) => {

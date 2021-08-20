@@ -17,10 +17,13 @@
     "@types/react-router": "^5.1.15",
     "@types/styled-system__core": "^5.1.2",
     "axios": "^0.20.0",
+    "bootstrap": "5.0.2",
     "eslint": "^7.29.0",
     "framer-motion": "^4",
     "react": "17.0.2",
+    "react-bootstrap": "^2.0.0-beta.4",
     "react-dom": "5.2.0",
+    "react-owl-carousel": "^2.3.3",
     "react-router-dom": "17.0.2",
     "react-scripts": "4.0.3",
     "typescript": "4.1.2"
@@ -47,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@types/brainhubeu__react-carousel": "^2.0.3",
     "@types/react-router-dom": "^5.1.7"
   }
 }

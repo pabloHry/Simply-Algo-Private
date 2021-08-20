@@ -11,47 +11,58 @@ import {
   Tr,
   Td,
   Tbody,
-  Tfoot
+  Tfoot,
+  Flex,
+  Image
 } from '@chakra-ui/react';
 
 export default function Profile() {
   const ctx = useContext(myContext);
+
   return (
     <Layout>
-      <Box pt={5}>
-        <Text textStyle="h4" color="simplyalgo" ml={5}>
-          Profile
-        </Text>
-        <Table variant="simple">
-          <TableCaption></TableCaption>
-          <Thead>
-            <Tr>
-              <Th>To convert</Th>
-              <Th>into</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            <Tr>
-              <Td>Nom</Td>
-              {/* <Td>{ctx.prenom}</Td> */}
-              <Td>millimetres (mm)</Td>
-            </Tr>
-            <Tr>
-              <Td>feet</Td>
-              <Td>centimetres (cm)</Td>
-            </Tr>
-            <Tr>
-              <Td>yards</Td>
-              <Td>metres (m)</Td>
-            </Tr>
-          </Tbody>
-          <Tfoot>
-            <Tr>
-              <Th>To convert</Th>
-              <Th>into</Th>
-            </Tr>
-          </Tfoot>
-        </Table>
+      <Box bg="#EEEEEE" height="50rem">
+        <Box p={5} mx="20rem" py="10rem">
+          <Flex height="20rem">
+            <Box
+              w="25%"
+              bg="pute"
+              boxShadow="-1px 17px 23px -1px rgba(0,0,0,0.34)"
+            >
+              <Image
+                src="https://www.debarra-speed-grandest.fr/wp-content/uploads/2020/04/avatar-default-icon.png"
+                w="100px"
+                h="100px"
+                display="block"
+                mx="auto"
+                mt={10}
+              />
+              <Text mt={5} textAlign="center" color="simplyAlgo" textStyle="h6">
+                {ctx.prenom} {ctx.nom}
+              </Text>
+              <Text mt={5}></Text>
+            </Box>
+            <Box
+              w="60%"
+              bg="white"
+              boxShadow="-1px 17px 23px -1px rgba(0,0,0,0.34)"
+            >
+              <Box mx={10} my={5}>
+                <Text textStyle="h6">Information</Text>
+                <hr />
+                <Flex justifyContent="space-between" mb={5}>
+                  <Text mt={5}>Nom : {ctx.nom}</Text>
+                  <Text mt={5}>Prenom : {ctx.prenom}</Text>
+                </Flex>
+                <hr />
+                <Flex justifyContent="space-between">
+                  <Text mt={5}>Email : {ctx.email}</Text>
+                  <Text mt={5}>Classe : {ctx.classe}</Text>
+                </Flex>
+              </Box>
+            </Box>
+          </Flex>
+        </Box>
       </Box>
     </Layout>
   );

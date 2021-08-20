@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Layout from '../layout/Layout';
 import {
   Box,
@@ -15,17 +15,67 @@ import {
   useDisclosure,
   ModalCloseButton,
   ModalFooter,
-  Progress,
   ModalBody
 } from '@chakra-ui/react';
-
 import AccordionComponents from './AccordionComponents';
-import StarComponents from './StarComponent';
-import { DoubleQuotes, Trophy, Feather } from '../../theme/components/icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { DoubleQuotes, Star } from '../../theme/components/icons';
+import FeedBack from './FeedBack';
+import axios, { AxiosResponse } from 'axios';
+import { FeedBackInterface } from '../../Interfaces/FeedInterface';
+import { myContext } from '../Context';
+import { Carousel } from 'react-bootstrap';
 
 export default function CoursJs() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [feed, setFeed] = useState([]);
+  const ctx = useContext(myContext);
+  const [clicked, setClicked] = useState([false, false, false, false, false]);
 
+  const handleStarClick = (e: any, index: any) => {
+    e.preventDefault();
+    let clickStates = [...clicked];
+    for (let i = 0; i < 5; i++) {
+      if (i <= index) clickStates[i] = true;
+      else clickStates[i] = false;
+    }
+
+    setClicked(clickStates);
+  };
+  useEffect(() => {
+    axios
+      .get('http://localhost:4000/feed', {
+        withCredentials: true
+      })
+      .then((res: AxiosResponse) => {
+        setFeed(
+          res.data.filter((item: FeedBackInterface) => {
+            return item.firstname;
+          })
+        );
+      });
+  }, [ctx]);
+  if (!feed) {
+    return null;
+  }
+
+  const newLevel = {
+    level: 20
+  };
+
+  const progression = () => {
+    if (newLevel.level === 20) {
+      window.location.reload();
+      axios
+        .put(`http://localhost:4000/user/${ctx.id}`, newLevel)
+        .then(async (res: AxiosResponse) => {
+          if (res.data === 'success') {
+          }
+        });
+    } else {
+      console.log('');
+    }
+  };
   return (
     <Layout>
       <Flex p={4} bg="#FBFBFB" justifyContent="center">
@@ -36,7 +86,7 @@ export default function CoursJs() {
         />
       </Flex>
       <Flex mx={10} h="100%">
-        <Box w="20%" p={5}>
+        <Box w={['0', '0', '0', '20%']} p={[0, 0, 0, 5]}>
           <AccordionComponents />
         </Box>
         <Box p={5} w="62%" textAlign="justify">
@@ -58,7 +108,7 @@ export default function CoursJs() {
             error. Ipsa praesentium dignissimos rerum sequi, impedit eius
             aliquam.
           </Text>
-          <Alert status="success" mt={10} p={5}>
+          <Alert status="success" mt={10} p={5} fontWeight="700">
             <AlertIcon />
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
           </Alert>
@@ -77,7 +127,7 @@ export default function CoursJs() {
             error. Ipsa praesentium dignissimos rerum sequi, impedit eius
             aliquam.
           </Text>
-          <Alert status="error" mt={10} p={5}>
+          <Alert status="error" mt={10} p={5} fontWeight="700">
             <AlertIcon />
             There was an error processing your request
           </Alert>
@@ -120,50 +170,68 @@ export default function CoursJs() {
                 Voluptatibus, labore?
               </ModalBody>
               <ModalFooter>
-                <Button onClick={onClose}>Fermer</Button>
+                <Button variant="success" onClick={progression}>
+                  Done
+                </Button>
               </ModalFooter>
             </ModalContent>
           </Modal>
-
-          <Box bg="#FBFBFB" p={5} my={10}>
-            <Flex p={5}>
-              <Image
-                src="https://www.debarra-speed-grandest.fr/wp-content/uploads/2020/04/avatar-default-icon.png"
-                w="150px"
-                h="150px"
-              />
-              <Text
-                alignSelf="center"
-                textAlign="justify"
-                ml={5}
-                fontSize="20px"
-              >
-                <Box mb={5}>
-                  <DoubleQuotes w="20px" h="20px" />
-                </Box>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Provident temporibus hic animi neque reiciendis aliquam
-                doloribus a officiis nam maiores.l
-              </Text>
-            </Flex>
-            <Text textStyle="h6" color="info" ml={10}>
-              Salope pute
-            </Text>
-            <Flex mt={1} ml={10}>
-              <StarComponents />
-            </Flex>
-          </Box>
+          <Carousel>
+            {feed.map((item: FeedBackInterface) => {
+              return (
+                <Carousel.Item>
+                  <Box bg="#FBFBFB" p={5} my={10} key={item.id} id={item.id}>
+                    <Flex p={5}>
+                      <Image
+                        src="https://www.debarra-speed-grandest.fr/wp-content/uploads/2020/04/avatar-default-icon.png"
+                        w="150px"
+                        h="150px"
+                      />
+                      <Text
+                        alignSelf="center"
+                        textAlign="justify"
+                        ml={5}
+                        fontSize="20px"
+                      >
+                        <Box mb={5}>
+                          <DoubleQuotes w="20px" h="20px" />
+                        </Box>
+                        {item.msg}
+                      </Text>
+                    </Flex>
+                    <Flex mt={1} ml={10}>
+                      <Star
+                        onClick={(e: any) => handleStarClick(e, 0)}
+                        color={item.star1 ? 'pute' : null}
+                      />
+                      <Star color={item.star2 ? 'pute' : null} />
+                      <Star
+                        onClick={(e: any) => handleStarClick(e, 2)}
+                        color={item.star3 ? 'pute' : null}
+                      />
+                      <Star
+                        onClick={(e: any) => handleStarClick(e, 3)}
+                        color={item.star4 ? 'pute' : null}
+                      />
+                      <Star
+                        onClick={(e: any) => handleStarClick(e, 4)}
+                        color={item.star5 ? 'pute' : null}
+                      />
+                    </Flex>
+                    <Box display="flex" justifyContent="center">
+                      <Text color="info" textStyle="h6">
+                        {item.firstname}
+                      </Text>
+                    </Box>
+                  </Box>
+                </Carousel.Item>
+              );
+            })}
+          </Carousel>
         </Box>
         <Box w="20%" p={5}>
           <Box position="sticky" top="0">
-            <Flex justifyContent="center">
-              <Trophy w="30px" h="30px" />
-            </Flex>
-            <Progress value={20} size="xs" colorScheme="orange" mt={10} />
-            <Button variant="orange">
-              <Feather w="20x" h="20px" />
-              <Text>Avis</Text>
-            </Button>
+            <FeedBack />
           </Box>
         </Box>
       </Flex>

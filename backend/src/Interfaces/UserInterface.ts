@@ -4,6 +4,10 @@ export interface UserInterface {
   level: number;
   feedBack: string;
   id: string;
+  email: string;
+  classe: string;
+  prenom: string;
+  nom: string;
 }
 
 export interface DatabaseUserInterface {

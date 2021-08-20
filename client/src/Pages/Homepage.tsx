@@ -21,21 +21,30 @@ export default function Homepage() {
       <Box>
         <Box py={[4, 40]} mx={40}>
           <Grid
-            h="200px"
+            h={['400px', '200px', '200px', '200px', '200px']}
             templateRows="repeat(2, 1fr)"
-            templateColumns="repeat(5, 1fr)"
+            templateColumns={['0', '0', '0', '0', 'repeat(5, 1fr)']}
             gap={8}
-            ml="10rem"
+            ml={['-4rem', '0', '5rem', '10rem']}
+            mt={['3rem', '0', '0', '0']}
           >
             <GridItem rowSpan={6} colSpan={2} textAlign="center">
               <Box>
-                <Text textStyle="h2" color="simplyAlgo">
+                <Text
+                  textStyle="h2"
+                  color="simplyAlgo"
+                  textAlign={['center', 'center', 'center', 'unset']}
+                >
                   Apprends un langage <br />
                   informatique gratuitement <br />
                   tout en t'amusant.
                 </Text>
                 <Button my={10} variant="orange">
-                  <Link textStyle="h6" href={ctx ? '/choose' : '/login'}>
+                  <Link
+                    textStyle="h6"
+                    href={ctx ? '/choose' : '/login'}
+                    className="whited"
+                  >
                     {' '}
                     C'est parti
                   </Link>
@@ -55,21 +64,21 @@ export default function Homepage() {
                 >
                   <Image
                     src={logo}
-                    boxSize="140px"
+                    boxSize={['0', '0', '0', '0', '140px']}
                     objectFit="cover"
                     alt="Segun Adebayo"
                   />
                   <Box
                     ml={4}
-                    border="3px solid orange"
+                    border={['0', '0', '0', '0', '3px solid orange']}
                     borderRadius="10px"
                     p={3}
-                    w={190}
+                    w={['0', '0', '0', '200px']}
                     h={20}
                     textAlign="center"
                   >
                     <Text
-                      textStyle="rf-text"
+                      fontSize={['0', '0', '0', '0', '16px']}
                       fontWeight="700"
                       color="simplyAlgo"
                     >
@@ -82,9 +91,12 @@ export default function Homepage() {
           </Grid>
         </Box>
         <Box Box w="100%" py={[4, 20]} bg="#F5F5F5">
-          <Box ml="10rem">
+          <Box
+            ml={['0', '0', '5rem', '3rem', '10rem']}
+            textAlign={['center', 'center', 'center', 'unset']}
+          >
             <Text textStyle="h2" color="simplyAlgo">
-              La meilleure façon d'apprendre un langage.
+              La meilleure façon d'apprendre un langage
             </Text>
             <br />
             <Text textStyle="rf-text" letterSpacing={2} lineHeight={2}>

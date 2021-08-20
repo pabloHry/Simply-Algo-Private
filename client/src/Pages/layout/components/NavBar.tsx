@@ -31,7 +31,9 @@ const NavBar = () => {
     <Box bg="pute" p={4}>
       <Flex>
         <Text color="white" textStyle="h4" ml={4} flex="1">
-          <Link to="/">SimplyAlgo</Link>
+          <Link to="/" className="whited">
+            SimplyAlgo
+          </Link>
         </Text>
         {ctx ? (
           <>
@@ -42,6 +44,7 @@ const NavBar = () => {
                 icon={<Hamburger />}
                 variant="none"
               />
+
               <MenuList>
                 <Link onClick={logout} to="/logout">
                   <MenuItem icon={<User />}>Déconnexion</MenuItem>

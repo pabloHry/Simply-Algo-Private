@@ -13,7 +13,7 @@ const styles = {
   global: {
     'html, body': {
       fontSize: `${rootFontSizePx}px`,
-      fontFamily: 'Marianne, Arial',
+      fontFamily: 'Poppins',
       background: 'white',
       color: 'primaryText'
     }
