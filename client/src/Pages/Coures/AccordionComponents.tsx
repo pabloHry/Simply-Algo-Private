@@ -15,16 +15,20 @@ import {
 export default function AccordionComponents() {
   return (
     <Box position="sticky" top="0">
-      <Text textStyle="h6" fontSize={['0', '0', '0', '16px']}>
+      <Text
+        textStyle="h6"
+        textAlign={['center', 'unset', 'unset', 'unset']}
+        mt={[5, 0, 0, 0]}
+      >
         Sommaire :{' '}
       </Text>
       <Accordion allowMultiple>
         <AccordionItem mt={5}>
           <AccordionButton>
-            <Box flex="1" textAlign="left" fontSize={['0', '0', '0', '16px']}>
+            <Box flex="1" textAlign="left">
               Etape 1
             </Box>
-            <AccordionIcon w={['0', '0', '0']} />
+            <AccordionIcon w={['20px']} />
           </AccordionButton>
           <AccordionPanel pb={4}>
             <List stylePosition="inside">
@@ -54,10 +58,10 @@ export default function AccordionComponents() {
         </AccordionItem>
         <AccordionItem>
           <AccordionButton>
-            <Box flex="1" textAlign="left" fontSize={['0', '0', '0', '16px']}>
+            <Box flex="1" textAlign="left">
               Etape 2
             </Box>
-            <AccordionIcon w={['0', '0', '0']} />
+            <AccordionIcon w={['20px']} />
           </AccordionButton>
           <AccordionPanel pb={4}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -68,10 +72,10 @@ export default function AccordionComponents() {
         </AccordionItem>
         <AccordionItem>
           <AccordionButton>
-            <Box flex="1" textAlign="left" fontSize={['0', '0', '0', '16px']}>
+            <Box flex="1" textAlign="left">
               Etape 3
             </Box>
-            <AccordionIcon w={['0', '0', '0']} />
+            <AccordionIcon w={['20px']} />
           </AccordionButton>
           <AccordionPanel pb={4}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

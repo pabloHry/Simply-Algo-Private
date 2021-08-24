@@ -39,7 +39,7 @@ export default function AdminPage() {
     return null;
   }
 
-  const deleteUser = () => {
+  const deleteUser = async () => {
     let userid: string;
     data.forEach(async (item: UserInterface) => {
       if (item.username === selectedUser) {
@@ -56,6 +56,14 @@ export default function AdminPage() {
         withCredentials: true
       }
     );
+    toast({
+      title: "L'utilisateur a bien été supprimer",
+      status: 'success',
+      duration: 2000,
+      isClosable: true
+    });
+    await timeout(3000);
+    window.location.href = '/admin';
   };
 
   const isAdmin = {

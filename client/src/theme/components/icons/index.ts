@@ -5,3 +5,4 @@ export * from './Trophy';
 export * from './Feather';
 export * from './Message';
 export * from './Pencil';
+export * from './CheckIcon';

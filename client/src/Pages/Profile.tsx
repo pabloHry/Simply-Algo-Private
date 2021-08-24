@@ -22,10 +22,13 @@ export default function Profile() {
   return (
     <Layout>
       <Box bg="#EEEEEE" height="50rem">
-        <Box p={5} mx="20rem" py="10rem">
-          <Flex height="20rem">
+        <Box p={5} mx={['0', '0', '0', '20rem']} py="10rem">
+          <Flex
+            height="20rem"
+            flexDirection={['column', 'column', 'column', 'column', 'row']}
+          >
             <Box
-              w="25%"
+              w={['100%', '100%', '100%', '100%', '25%']}
               bg="pute"
               boxShadow="-1px 17px 23px -1px rgba(0,0,0,0.34)"
             >
@@ -43,7 +46,7 @@ export default function Profile() {
               <Text mt={5}></Text>
             </Box>
             <Box
-              w="60%"
+              w={['100%', '100%', '100%', '100%', '60%']}
               bg="white"
               boxShadow="-1px 17px 23px -1px rgba(0,0,0,0.34)"
             >

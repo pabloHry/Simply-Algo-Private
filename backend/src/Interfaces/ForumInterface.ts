@@ -1,11 +1,8 @@
 export interface DatabaseForumInterface {
   msg: string;
-  firstname: string;
-  star1: boolean;
-  star2: boolean;
-  star3: boolean;
-  star4: boolean;
-  star5: boolean;
+  msgCreated: number;
+  subjectCreated: number;
+  subject: string;
   _id: string;
 }
 
@@ -14,6 +11,5 @@ export interface ForumInterface {
   msgCreated: number;
   subjectCreated: number;
   subject: string;
-  title: boolean;
   _id: string;
 }

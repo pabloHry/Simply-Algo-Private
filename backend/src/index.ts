@@ -84,7 +84,8 @@ passport.deserializeUser((id: string, cb) => {
       nom: user.nom,
       email: user.email,
       classe: user.classe,
-      id: user._id
+      id: user._id,
+      emailValidate: user.emailValidate
     };
     cb(err, userInformation);
   });
@@ -146,7 +147,8 @@ app.post('/forum', async (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-  const { username, password, prenom, nom, email, classe } = req?.body;
+  const { username, password, prenom, nom, email, classe, _id } = req?.body;
+
   if (
     !username ||
     !password ||
@@ -156,7 +158,7 @@ app.post('/register', async (req, res) => {
     res.send('Improper Values');
     return;
   }
-  User.findOne({ username }, async (err, doc: DatabaseUserInterface) => {
+  User.findOne({ username, email }, async (err, doc: DatabaseUserInterface) => {
     if (err) throw err;
     if (doc) res.send('User Already Exists');
     if (!doc) {
@@ -170,6 +172,32 @@ app.post('/register', async (req, res) => {
         password: hashedPassword
       });
       await newUser.save();
+      // const SendMail = () => {
+      //   const sgMail = require('@sendgrid/mail');
+      //   sgMail.setApiKey(
+      //     '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'
+      //   );
+
+      //   const msg = {
+      //     to: `${email}`,
+      //     from: 'simplyAlgo@gmx.fr',
+      //     subject: 'Bienvenue sur SimplyAlgo',
+      //     text: "L'équipe de SimplyAlgo vous souhaites la bienvenue.",
+      //     html: `<strong>Bonjour ${prenom} </strong><a>http://localhost:3000/user/${_id}</a>`
+      //   };
+
+      //   sgMail
+      //     .send(msg)
+      //     .then((response: any) => {
+      //       console.log(response[0].statusCode);
+      //       console.log(response[0].headers);
+      //     })
+      //     .catch((error: any) => {
+      //       console.error(error);
+      //     });
+      // };
+
+      // SendMail();
       res.send('success');
     }
   });
@@ -198,8 +226,8 @@ const isAdministratorMiddleware = (
   }
 };
 
-app.post('/login', passport.authenticate('local'), (req, res) => {
-  res.send('success');
+app.post('/login', passport.authenticate('local'), async (req, res) => {
+  await res.send('success');
 });
 
 app.get('/user', (req, res) => {
@@ -226,9 +254,13 @@ app.put('/user/:id', async ({ body, params }, res) => {
     return res.status(400).send({ error: 'Probleme' });
   }
 
-  const result = await User.findOneAndUpdate({ _id: itemId }, body, {
-    new: true
-  });
+  const result = await User.findOneAndUpdate(
+    { _id: itemId, emailValidate: true },
+    body,
+    {
+      new: true
+    }
+  );
 
   return res.json(result);
 });
@@ -247,7 +279,8 @@ app.get('/getallusers', isAdministratorMiddleware, async (req, res) => {
         classe: item.classe,
         isAdmin: item.isAdmin,
         feedBack: item.feedBack,
-        level: item.level
+        level: item.level,
+        emailValidate: item.emailValidate
       };
       filteredUsers.push(userInformation);
     });

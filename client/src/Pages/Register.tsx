@@ -52,8 +52,15 @@ export default function Register() {
             isClosable: true
           });
           await timeout(3000);
-
           window.location.href = '/login';
+        } else {
+          toast({
+            title: "Une erreur s'est produite..",
+            description: 'Impossible de créer votre compte.',
+            status: 'error',
+            duration: 2000,
+            isClosable: true
+          });
         }
       });
   };

@@ -8,12 +8,14 @@ export interface UserInterface {
   classe: string;
   prenom: string;
   nom: string;
+  emailValidate: boolean;
 }
 
 export interface DatabaseUserInterface {
   username: string;
   password: string;
   isAdmin: boolean;
+  emailValidate: boolean;
   prenom: string;
   nom: string;
   feedBack: string;

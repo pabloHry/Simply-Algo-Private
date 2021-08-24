@@ -31,6 +31,55 @@ export default function CoursJs() {
   const [feed, setFeed] = useState([]);
   const ctx = useContext(myContext);
   const [clicked, setClicked] = useState([false, false, false, false, false]);
+  const [correctCount, setCorrectCount] = useState(0);
+  const [incorrectCount, setIncorrectCount] = useState(0);
+  const [question1, setQuestion1] = useState(0);
+  const [answers, setAnswers] = useState([0, 0, 0, 0]);
+
+  // shuffle([]) {
+  //   let currentIndex = [].length,
+  //     temporaryValue,
+  //     randomIndex;
+  //   while (0 !== currentIndex) {
+  //     randomIndex = Math.floor(Math.random() * currentIndex);
+  //     currentIndex--;
+  //     temporaryValue = [currentIndex];
+  //     [currentIndex] = [randomIndex];
+  //     [randomIndex] = temporaryValue;
+  //   }
+  //   return [];
+  // }
+
+  //  const generate_question = () => {
+  //     let question_1 = "Select a function that can print";
+  //     let answer = "printf";
+  //     let random_answer_1 = "open";
+  //     let random_answer_2 = "malloc";
+  //     let random_answer_3 = "free";
+  //     let answers = [answer, random_answer_1, random_answer_2, random_answer_3];
+
+  //     this.setState({
+  //       question_1: question_1,
+  //       answers: this.shuffle(answers),
+  //     });
+  //   }
+
+  //   componentDidMount() {
+  //     this.generate_question();
+  //   }
+
+  //   check_answer(answer) {
+  //     if ("printf" === answer) {
+  //       this.setState({
+  //         correct_count: this.state.correct_count + 1,
+  //       });
+  //     } else {
+  //       this.setState({
+  //         incorrect_count: this.state.incorrect_count + 1,
+  //       });
+  //     }
+  //     this.generate_question();
+  //   }
 
   const handleStarClick = (e: any, index: any) => {
     e.preventDefault();
@@ -85,11 +134,15 @@ export default function CoursJs() {
           h="150px"
         />
       </Flex>
-      <Flex mx={10} h="100%">
-        <Box w={['0', '0', '0', '20%']} p={[0, 0, 0, 5]}>
+      <Flex mx={10} h="100%" flexDirection={['column', 'row', 'row', 'row']}>
+        <Box w={['100%', '20%', '20%', '20%']} p={[0, 0, 0, 5]}>
           <AccordionComponents />
         </Box>
-        <Box p={5} w="62%" textAlign="justify">
+        <Box
+          p={5}
+          w={['100%', '100%', '62%', '62%']}
+          textAlign={['center', 'justify', 'justify', 'justify']}
+        >
           <Text textStyle="h4" textAlign="center" id="Prérequis">
             Prérequis :
           </Text>
@@ -155,7 +208,7 @@ export default function CoursJs() {
             id="Exercice"
             display="block"
             mx="auto"
-            w="30%"
+            w={['100%', '70%', '30%', '30%']}
             fontWeight="700"
           >
             Exercice
@@ -229,7 +282,7 @@ export default function CoursJs() {
             })}
           </Carousel>
         </Box>
-        <Box w="20%" p={5}>
+        <Box w={['100%', '20%', '20%', '20%']} p={5}>
           <Box position="sticky" top="0">
             <FeedBack />
           </Box>

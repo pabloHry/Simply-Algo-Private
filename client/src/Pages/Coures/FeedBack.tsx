@@ -137,7 +137,7 @@ export default function FeedBack() {
   };
   return (
     <Box>
-      <Flex justifyContent="center" flexDirection="column">
+      <Flex justifyContent="center">
         <Trophy w={['30px']} h="30px" />
       </Flex>
       <Progress value={ctx.level} size="xs" colorScheme="orange" mt={10} />

@@ -12,6 +12,7 @@ import CoursJs from './Pages/Coures/CoursJs';
 import Forum from './Pages/Forum/Forum';
 import './main.css';
 import ForumJavaScript from './Pages/Forum/components/ForumJavaScript';
+import CreateMessages from './Pages/Forum/components/CreateMessages';
 function App() {
   const ctx = useContext(myContext);
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/js" component={CoursJs} />
             <Route path="/forum" component={Forum} />
             <Route path="/javascript" component={ForumJavaScript} />
+            <Route path="/topic" component={CreateMessages} />
           </>
         ) : (
           <>

@@ -57,7 +57,7 @@ export default function Login() {
         () => {
           toast({
             title: "Une erreur s'est produite..",
-            description: 'Impossible de créer un compte utilisateur.',
+            description: "Mot de passe ou nom d'utilisateur erroné.",
             status: 'error',
             duration: 2000,
             isClosable: true
